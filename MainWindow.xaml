@@ -9,7 +9,6 @@
 
     <Window.Resources>
 
-        <!-- Send Button Style -->
         <Style x:Key="SendButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#00FF88"/>
             <Setter Property="Foreground" Value="#0D1117"/>
@@ -37,7 +36,6 @@
             </Setter>
         </Style>
 
-        <!-- Input TextBox Style -->
         <Style x:Key="InputStyle" TargetType="TextBox">
             <Setter Property="Background" Value="#161B22"/>
             <Setter Property="Foreground" Value="#E6EDF3"/>
@@ -65,7 +63,6 @@
             </Setter>
         </Style>
 
-        <!-- Header Button Style -->
         <Style x:Key="HeaderButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#21262D"/>
             <Setter Property="Foreground" Value="#8B949E"/>
@@ -90,7 +87,6 @@
             </Setter>
         </Style>
 
-        <!-- Quick Action Button Style -->
         <Style x:Key="QuickButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#161B22"/>
             <Setter Property="Foreground" Value="#00FF88"/>
@@ -147,3 +143,86 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button x:Name="BtnClear" Content="Clear Chat" Style="{StaticResource HeaderButtonStyle}"
+                            Click="BtnClear_Click" Margin="0,0,8,0"/>
+                    <Button x:Name="BtnExit" Content="Exit" Style="{StaticResource HeaderButtonStyle}"
+                            Click="BtnExit_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ASCII LOGO -->
+        <Border Grid.Row="1" Background="#0D1117" Padding="10,8,10,4">
+            <TextBlock FontFamily="Courier New"
+                       FontSize="11"
+                       Foreground="#00FF88"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       Text="  ██╗  ██╗ █████╗ ███╗   ███╗ ██████╗ &#10;  ██║ ██╔╝██╔══██╗████╗ ████║██╔═══██╗&#10;  █████╔╝ ███████║██╔████╔██║██║   ██║&#10;  ██╔═██╗ ██╔══██║██║╚██╔╝██║██║   ██║&#10;  ██║  ██╗██║  ██║██║ ╚═╝ ██║╚██████╔╝&#10;  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝ "/>
+        </Border>
+
+        <!-- QUICK ACTION BUTTONS -->
+        <Border Grid.Row="2" Background="#161B22" BorderBrush="#21262D" BorderThickness="0,0,0,1" Padding="12,8">
+            <WrapPanel>
+                <TextBlock Text="Quick Actions: " Foreground="#8B949E" FontSize="11" VerticalAlignment="Center" Margin="4,2"/>
+                <Button Content="📋 View Tasks" Style="{StaticResource QuickButtonStyle}" Click="BtnViewTasks_Click"/>
+                <Button Content="➕ Add Task" Style="{StaticResource QuickButtonStyle}" Click="BtnAddTask_Click"/>
+                <Button Content="🎮 Start Quiz" Style="{StaticResource QuickButtonStyle}" Click="BtnStartQuiz_Click"/>
+                <Button Content="📜 Activity Log" Style="{StaticResource QuickButtonStyle}" Click="BtnActivityLog_Click"/>
+                <Button Content="❓ Help" Style="{StaticResource QuickButtonStyle}" Click="BtnHelp_Click"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- CHAT AREA -->
+        <Border Grid.Row="3" Background="#0D1117" Margin="16,8,16,0">
+            <ScrollViewer x:Name="ChatScrollViewer"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="ChatPanel" Margin="0,8"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- INPUT AREA -->
+        <Border Grid.Row="4" Background="#161B22" BorderBrush="#21262D"
+                BorderThickness="0,1,0,0" Padding="16,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="TxtInput"
+                         Grid.Column="0"
+                         Style="{StaticResource InputStyle}"
+                         KeyDown="TxtInput_KeyDown"
+                         Margin="0,0,10,0"
+                         VerticalContentAlignment="Center"
+                         Height="44"/>
+
+                <Button x:Name="BtnSend"
+                        Grid.Column="1"
+                        Content="Send"
+                        Style="{StaticResource SendButtonStyle}"
+                        Click="BtnSend_Click"
+                        Height="44" Width="80"/>
+            </Grid>
+        </Border>
+
+        <!-- STATUS BAR -->
+        <Border Grid.Row="5" Background="#161B22" Padding="16,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="TxtStatus" Grid.Column="0"
+                           Text="Type a message and press Enter or click Send"
+                           Foreground="#8B949E" FontSize="11"/>
+
+                <TextBlock x:Name="TxtMemory" Grid.Column="1"
+                           Foreground="#8B949E" FontSize="11"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>
